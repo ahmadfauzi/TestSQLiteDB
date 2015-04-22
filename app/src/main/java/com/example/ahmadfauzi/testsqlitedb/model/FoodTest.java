@@ -23,7 +23,7 @@ public class FoodTest {
         this.idFT = id;
         this.nameFT = name;
         this.reagentFT = reagent;
-        this.resultFT = result;
+        this.resultFT = result;8
     }
 
     public FoodTest(Bundle b){
