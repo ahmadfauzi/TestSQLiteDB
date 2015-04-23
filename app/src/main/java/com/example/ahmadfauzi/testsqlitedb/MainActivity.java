@@ -29,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
             public void onFinish() {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         };
         timer.start();

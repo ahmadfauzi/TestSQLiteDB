@@ -7,5 +7,8 @@
     <string name="title_activity_dasboard_ft">DasboardFTActivity</string>
     <string name="title_activity_detail_ft">DetailFTActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="usernameEditText">Name Account</string>
+    <string name="passwordEditText">Password</string>
+    <string name="loginButton">Login</string>
 
 </resources>
