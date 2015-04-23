@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".dashboard_foodtest.DasboardFTActivity"
+            android:label="@string/title_activity_dasboard_ft" >
+        </activity>
+        <activity
+            android:name=".dashboard_foodtest.DetailFTActivity"
+            android:label="@string/title_activity_detail_ft" >
+        </activity>
+        <activity
+            android:name=".login.LoginActivity"
+            android:label="@string/title_activity_login" >
+        </activity>
     </application>
 
 </manifest>

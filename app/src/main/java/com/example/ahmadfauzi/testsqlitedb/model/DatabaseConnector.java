@@ -63,4 +63,34 @@ public class DatabaseConnector {
         }
         return foodTestsList;
     }
+
+    public long updateFT(FoodTest foodTest){
+        long statusUpdate = 0;
+
+        SQLiteDatabase db = mySQLiteHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
+        values.put(MySQLiteHelper.COLUMN_NAME_TABLE_FT, foodTest.getNameFT());
+        values.put(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, foodTest.getReagentFT());
+        values.put(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, foodTest.getResultFT());
+
+        statusUpdate = db.update(MySQLiteHelper.TABLE_NAME_FT, values, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= " + foodTest.getIdFT() + "'", null);
+
+        if(statusUpdate == -1){
+            Log.d("DatabaseConnector", "Update gagal: " + foodTest.toString());
+        }else {
+            Log.d("DatabaseConnector", "Update berhasil: " + foodTest.toString());
+        }
+        return statusUpdate;
+    }
+
+    public void deleteFT(int deleteIdFT){
+        SQLiteDatabase db = mySQLiteHelper.getWritableDatabase();
+
+        int statusDelete = 0;
+        statusDelete = db.delete(MySQLiteHelper.TABLE_NAME_FT, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= '" + deleteIdFT + "'", null);
+
+        Log.d("DatabaseConnector", "Berhasil delete, sebanyak: " + statusDelete);
+        db.close();
+    }
 }

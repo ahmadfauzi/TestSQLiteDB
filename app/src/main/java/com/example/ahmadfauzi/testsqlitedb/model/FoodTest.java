@@ -23,7 +23,7 @@ public class FoodTest {
         this.idFT = id;
         this.nameFT = name;
         this.reagentFT = reagent;
-        this.resultFT = result;8
+        this.resultFT = result;
     }
 
     public FoodTest(Bundle b){
@@ -65,5 +65,38 @@ public class FoodTest {
 
     public void setResultFT(String resultFT) {
         this.resultFT = resultFT;
+    }
+
+    //================================================================================================
+
+    @Override
+    public boolean equals(Object o){
+        if(this == o)
+            return true;
+        if(o == null || getClass() != o.getClass())
+            return false;
+
+        return  true;
+    }
+
+    //================================================================================================
+
+    public Bundle toBundle(){
+        Bundle b = new Bundle();
+        b.putInt(MySQLiteHelper.COLUMN_ID_TABLE_FT, this.idFT);
+        b.putString(MySQLiteHelper.COLUMN_NAME_TABLE_FT, this.nameFT);
+        b.putString(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, this.reagentFT);
+        b.putString(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, this.resultFT);
+        return b;
+    }
+
+    @Override
+    public String toString(){
+        return "FoodTest{" +
+                "idFT='" + idFT + '\'' +
+                "nameFT='" + nameFT + '\'' +
+                "reagentFT='" + reagentFT + '\'' +
+                "resultFT='" + resultFT + '\'' +
+                '}';
     }
 }

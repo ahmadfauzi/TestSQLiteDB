@@ -4,5 +4,8 @@
     <string name="app_name">TestSQLiteDB</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_dasboard_ft">DasboardFTActivity</string>
+    <string name="title_activity_detail_ft">DetailFTActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 </resources>
