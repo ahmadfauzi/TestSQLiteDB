@@ -2,10 +2,12 @@ package com.example.ahmadfauzi.testsqlitedb.model;
 
 import android.os.Bundle;
 
+import java.io.Serializable;
+
 /**
  * Created by 5111100057 on 4/22/2015.
  */
-public class FoodTest {
+public class FoodTest implements Serializable {
 
     public int idFT;
     public String nameFT;
