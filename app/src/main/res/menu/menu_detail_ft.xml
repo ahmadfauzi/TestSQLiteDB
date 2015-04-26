@@ -2,6 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.ahmadfauzi.testsqlitedb.dashboard_foodtest.DetailFTActivity">
+
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_save"
+        android:title="@string/menuTitleSave"
+        android:icon="@drawable/ic_action_done"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/action_delete"
+        android:title="@string/menuTitleDelete"
+        android:icon="@drawable/ic_action_remove"
+        app:showAsAction="always"
+        />
 </menu>

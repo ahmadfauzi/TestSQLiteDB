@@ -13,5 +13,7 @@
     <string name="nameTextView">Name</string>
     <string name="reagentTextView">Reagent</string>
     <string name="resultTextView">Result</string>
+    <string name="menuTitleSave">Save</string>
+    <string name="menuTitleDelete">Delete</string>
 
 </resources>
