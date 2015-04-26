@@ -1,13 +1,19 @@
 package com.example.ahmadfauzi.testsqlitedb.dashboard_foodtest;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.ahmadfauzi.testsqlitedb.R;
+import com.example.ahmadfauzi.testsqlitedb.model.DatabaseConnector;
+import com.example.ahmadfauzi.testsqlitedb.model.FoodTest;
 
-public class DasboardFTActivity extends ActionBarActivity {
+import java.util.ArrayList;
+
+public class DasboardFTActivity extends ActionBarActivity implements FTListFragment.Callbacks{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +21,25 @@ public class DasboardFTActivity extends ActionBarActivity {
         setContentView(R.layout.activity_dasboard_ft);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        refreshList();
+    }
+
+    private void refreshList() {
+        Log.d("DasboardFTActivity", "Refresh List");
+
+        DatabaseConnector databaseConnector = new DatabaseConnector(this);
+        ArrayList<FoodTest> foodtestList = (ArrayList<FoodTest>) databaseConnector.getFTList();
+
+        FTListFragment fragment = new FTListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("FTList", foodtestList);
+        fragment.setArguments(bundle);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.dashboardMainActivityContainer, fragment).commit();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,10 +56,28 @@ public class DasboardFTActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id){
+            case R.id.action_add:
+                addNewFT();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addNewFT() {
+        Bundle bundle = null;
+        Intent detailIntent = new Intent(this, DetailFTActivity.class);
+        detailIntent.putExtra("packetFromDashboard", bundle);
+        startActivity(detailIntent);
+    }
+
+    @Override
+    public void onItemSelected(FoodTest foodTest){
+        Bundle bundle = foodTest.toBundle();
+
+        Intent detailIntent = new Intent(this, DetailFTActivity.class);
+        detailIntent.putExtra("packetFromDashboard", bundle);
+        startActivity(detailIntent);
     }
 }

@@ -1,11 +1,15 @@
 package com.example.ahmadfauzi.testsqlitedb.dashboard_foodtest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ahmadfauzi.testsqlitedb.R;
 import com.example.ahmadfauzi.testsqlitedb.model.DatabaseConnector;
@@ -84,9 +88,39 @@ public class DetailFTActivity extends ActionBarActivity {
 
         long statusInsert = -1;
         statusInsert = databaseConnector.insertFT(foodTest);
+
+        if(statusInsert != -1){
+            Log.d("DetailFTActivity", "Save FoodTest success: " + foodTest.toString());
+            Toast.makeText(this, "Save FoodTest Success: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+            finish();
+        }else{
+            Log.d("DetailFTActivity", "Save FoodTest failed: " + foodTest.toString());
+            Toast.makeText(this, "Save FoodTest failed: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void deleteFT() {
+        Log.d("DetailFTActivity","on delete dijalankan");
+        final AlertDialog.Builder builder = new AlertDialog.Builder(DetailFTActivity.this);
 
+        builder.setTitle("Are you sure?");
+        builder.setMessage("Data will be deleted");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DatabaseConnector databaseConnector = new DatabaseConnector(DetailFTActivity.this);
+
+                databaseConnector.deleteFT(_idFT);
+                finish();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(), "Cancel delete data", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }

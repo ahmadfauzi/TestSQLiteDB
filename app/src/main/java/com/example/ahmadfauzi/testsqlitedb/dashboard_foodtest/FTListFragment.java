@@ -29,7 +29,7 @@ public class FTListFragment extends ListFragment{
         super.onCreate(savedInstanceState);
 
         Bundle b = getArguments();
-        foodtestList = (ArrayList<FoodTest>) b.getSerializable("FoodTestList");
+        foodtestList = (ArrayList<FoodTest>) b.getSerializable("FTList");
         Log.d("FTListFragment","Data received : " + foodtestList.size());
 
         FTArrayAdapter adapter = new FTArrayAdapter(getActivity(), R.layout.ft_list_item, foodtestList);
