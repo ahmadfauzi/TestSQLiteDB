@@ -38,6 +38,11 @@ public class FTArrayAdapter extends ArrayAdapter<FoodTest> {
         ImageView image = (ImageView) view.findViewById(R.id.list_item_photo);
 
         TextView idLabel = (TextView) view.findViewById(R.id.list_item_id);
+        if(foodTest.getReagentFT().isEmpty()){
+           //idLabel.setText(0);
+        }else{
+            //idLabel.setText(foodTest.getIdFT());
+        }
 
         TextView nameLabel = (TextView) view.findViewById(R.id.list_item_name);
         if(foodTest.getNameFT().isEmpty()){

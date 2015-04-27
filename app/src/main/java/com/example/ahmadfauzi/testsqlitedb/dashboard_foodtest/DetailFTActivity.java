@@ -44,7 +44,6 @@ public class DetailFTActivity extends ActionBarActivity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -89,8 +88,6 @@ public class DetailFTActivity extends ActionBarActivity {
         EditText editTextResult = (EditText) findViewById(R.id.editTextResult);
         foodTest.setResultFT(editTextResult.getText().toString());
 
-        //foodTest.setIdFT(_idFT);
-
         DatabaseConnector databaseConnector = new DatabaseConnector(this);
 
         long statusInsert = -1;
@@ -107,7 +104,11 @@ public class DetailFTActivity extends ActionBarActivity {
     }
 
     private void deleteFT() {
-        Log.d("DetailFTActivity","on delete dijalankan");
+
+        Intent intent = getIntent();
+        _idFT = intent.getIntExtra("FT_Id",0);
+
+        Log.d("DetailFTActivity","on delete is running");
         final AlertDialog.Builder builder = new AlertDialog.Builder(DetailFTActivity.this);
 
         builder.setTitle("Are you sure?");

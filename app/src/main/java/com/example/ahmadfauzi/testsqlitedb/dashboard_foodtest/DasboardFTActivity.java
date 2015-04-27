@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.ahmadfauzi.testsqlitedb.R;
 import com.example.ahmadfauzi.testsqlitedb.model.DatabaseConnector;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 public class DasboardFTActivity extends ActionBarActivity implements FTListFragment.Callbacks{
 
+    TextView foodtest_Id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +70,7 @@ public class DasboardFTActivity extends ActionBarActivity implements FTListFragm
         Bundle bundle = null;
         Intent intent = new Intent(this, DetailFTActivity.class);
         intent.putExtra("packetFromDashboard", bundle);
-        //intent.putExtra("foodtestId", 0);
+        //intent.putExtra("foodtest_Id",0);
         startActivity(intent);
     }
 
@@ -78,6 +80,7 @@ public class DasboardFTActivity extends ActionBarActivity implements FTListFragm
 
         Intent detailIntent = new Intent(this, DetailFTActivity.class);
         detailIntent.putExtra("packetFromDashboard", bundle);
+        detailIntent.putExtra("FT_Id", foodTest.getIdFT());
         startActivity(detailIntent);
     }
 }

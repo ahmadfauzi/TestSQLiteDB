@@ -90,7 +90,7 @@ public class DatabaseConnector {
         int statusDelete = 0;
         statusDelete = db.delete(MySQLiteHelper.TABLE_NAME_FT, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= '" + deleteIdFT + "'", null);
 
-        Log.d("DatabaseConnector", "Berhasil delete, sebanyak: " + statusDelete);
+        Log.d("DatabaseConnector", "Delete is success with which total is: " + statusDelete);
         db.close();
     }
 
