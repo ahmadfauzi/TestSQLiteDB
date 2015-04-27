@@ -15,7 +15,7 @@ public class FoodTest implements Serializable {
     public String resultFT;
 
     public FoodTest(){
-        this.idFT = 0;
+        //this.idFT = 0;
         this.nameFT = "";
         this.reagentFT = "";
         this.resultFT = "";

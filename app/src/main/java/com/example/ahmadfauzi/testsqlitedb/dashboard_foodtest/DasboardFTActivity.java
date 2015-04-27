@@ -61,15 +61,15 @@ public class DasboardFTActivity extends ActionBarActivity implements FTListFragm
                 addNewFT();
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     private void addNewFT() {
         Bundle bundle = null;
-        Intent detailIntent = new Intent(this, DetailFTActivity.class);
-        detailIntent.putExtra("packetFromDashboard", bundle);
-        startActivity(detailIntent);
+        Intent intent = new Intent(this, DetailFTActivity.class);
+        intent.putExtra("packetFromDashboard", bundle);
+        //intent.putExtra("foodtestId", 0);
+        startActivity(intent);
     }
 
     @Override

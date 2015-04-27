@@ -23,7 +23,7 @@ public class DatabaseConnector {
 
         SQLiteDatabase db = mySQLiteHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
+        //values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
         values.put(MySQLiteHelper.COLUMN_NAME_TABLE_FT, foodTest.getNameFT());
         values.put(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, foodTest.getReagentFT());
         values.put(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, foodTest.getResultFT());
@@ -92,5 +92,30 @@ public class DatabaseConnector {
 
         Log.d("DatabaseConnector", "Berhasil delete, sebanyak: " + statusDelete);
         db.close();
+    }
+
+    public FoodTest getFTbyId(int id){
+        SQLiteDatabase db = mySQLiteHelper.getReadableDatabase();
+
+        FoodTest foodTest = new FoodTest();
+
+        Cursor cursor = db.query(MySQLiteHelper.TABLE_NAME_FT, null, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= '" + id + "'", null, null, null, null);
+
+        if(cursor.moveToFirst()){
+            Log.d("DatabaseConnector", "get FoodTest by ID is success");
+            do{
+                foodTest.setIdFT(cursor.getInt(cursor.getColumnIndex(MySQLiteHelper.COLUMN_ID_TABLE_FT)));
+                foodTest.setNameFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_NAME_TABLE_FT)));
+                foodTest.setReagentFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT)));
+                foodTest.setResultFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_RESULT_TABLE_FT)));
+            }while (cursor.moveToFirst());
+            cursor.close();
+            db.close();
+            return foodTest;
+        }else {
+            Log.d("DatabaseConnector", "get FoodTest by ID is failed");
+            cursor.close();
+            return null;
+        }
     }
 }

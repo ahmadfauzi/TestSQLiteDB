@@ -33,6 +33,14 @@ public class DetailFTActivity extends ActionBarActivity {
 
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.detailFTContainer, fragment).commit();
+            /*
+            _idFT = 0;
+            Intent intent = getIntent();
+            _idFT = intent.getIntExtra("foodtestId",0);
+            DatabaseConnector databaseConnector = new DatabaseConnector(this);
+            FoodTest foodTest = new FoodTest();
+            foodTest = databaseConnector.getFTbyId(_idFT);
+            */
         }
     }
 
@@ -66,7 +74,6 @@ public class DetailFTActivity extends ActionBarActivity {
                 deleteFT();
                 break;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -82,7 +89,7 @@ public class DetailFTActivity extends ActionBarActivity {
         EditText editTextResult = (EditText) findViewById(R.id.editTextResult);
         foodTest.setResultFT(editTextResult.getText().toString());
 
-        foodTest.setIdFT(_idFT);
+        //foodTest.setIdFT(_idFT);
 
         DatabaseConnector databaseConnector = new DatabaseConnector(this);
 
