@@ -2,6 +2,7 @@ package com.example.ahmadfauzi.testsqlitedb.dashboard_foodtest;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,8 @@ public class FTArrayAdapter extends ArrayAdapter<FoodTest> {
         ImageView image = (ImageView) view.findViewById(R.id.list_item_photo);
 
         TextView idLabel = (TextView) view.findViewById(R.id.list_item_id);
-        if(foodTest.getReagentFT().isEmpty()){
-           //idLabel.setText(0);
-        }else{
-            //idLabel.setText(foodTest.getIdFT());
-        }
+        idLabel.setText(String.valueOf(foodTest.getIdFT()));
+        Log.d("FTArrayAdapter", "ID = " + String.valueOf(foodTest.getIdFT()));
 
         TextView nameLabel = (TextView) view.findViewById(R.id.list_item_name);
         if(foodTest.getNameFT().isEmpty()){

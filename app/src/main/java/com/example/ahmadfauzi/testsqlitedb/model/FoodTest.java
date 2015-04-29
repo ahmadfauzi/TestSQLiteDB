@@ -95,7 +95,7 @@ public class FoodTest implements Serializable {
     @Override
     public String toString(){
         return "FoodTest{" +
-                "idFT='" + idFT + '\'' +
+                "idFT='" + String.valueOf(idFT) + '\'' +
                 "nameFT='" + nameFT + '\'' +
                 "reagentFT='" + reagentFT + '\'' +
                 "resultFT='" + resultFT + '\'' +

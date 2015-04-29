@@ -7,16 +7,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ahmadfauzi.testsqlitedb.R;
 import com.example.ahmadfauzi.testsqlitedb.model.DatabaseConnector;
 import com.example.ahmadfauzi.testsqlitedb.model.FoodTest;
 
 import java.util.ArrayList;
+import java.util.TooManyListenersException;
 
 public class DasboardFTActivity extends ActionBarActivity implements FTListFragment.Callbacks{
 
-    TextView foodtest_Id;
+    TextView foodTestId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,5 +84,8 @@ public class DasboardFTActivity extends ActionBarActivity implements FTListFragm
         detailIntent.putExtra("packetFromDashboard", bundle);
         detailIntent.putExtra("FT_Id", foodTest.getIdFT());
         startActivity(detailIntent);
+
+        Toast.makeText(this, "DashboardFTActivity, ID = " + String.valueOf(foodTest.getIdFT()), Toast.LENGTH_SHORT).show();
+        Log.d("DashboardMainActivity", String.valueOf(foodTest.getIdFT()));
     }
 }

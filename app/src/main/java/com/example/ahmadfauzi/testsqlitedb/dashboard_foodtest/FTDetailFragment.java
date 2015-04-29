@@ -3,12 +3,14 @@ package com.example.ahmadfauzi.testsqlitedb.dashboard_foodtest;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.ahmadfauzi.testsqlitedb.R;
 import com.example.ahmadfauzi.testsqlitedb.model.FoodTest;
@@ -31,6 +33,7 @@ public class FTDetailFragment extends Fragment{
         if(bundle != null && bundle.containsKey(MySQLiteHelper.TABLE_NAME_FT)){
             foodTest = new FoodTest(bundle);
         }
+        Log.d("FTDetailFragment", "ID = " + String.valueOf(bundle));
     }
 
     @Override

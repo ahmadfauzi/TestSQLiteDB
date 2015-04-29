@@ -69,12 +69,12 @@ public class DatabaseConnector {
 
         SQLiteDatabase db = mySQLiteHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
+        //values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
         values.put(MySQLiteHelper.COLUMN_NAME_TABLE_FT, foodTest.getNameFT());
         values.put(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, foodTest.getReagentFT());
         values.put(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, foodTest.getResultFT());
 
-        statusUpdate = db.update(MySQLiteHelper.TABLE_NAME_FT, values, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= " + foodTest.getIdFT() + "'", null);
+        statusUpdate = db.update(MySQLiteHelper.TABLE_NAME_FT, values, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= '" + foodTest.getIdFT() + "'", null);
 
         if(statusUpdate == -1){
             Log.d("DatabaseConnector", "Update gagal: " + foodTest.toString());

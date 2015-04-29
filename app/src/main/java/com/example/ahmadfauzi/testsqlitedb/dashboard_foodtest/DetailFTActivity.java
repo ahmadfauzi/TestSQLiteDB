@@ -17,7 +17,7 @@ import com.example.ahmadfauzi.testsqlitedb.model.FoodTest;
 
 public class DetailFTActivity extends ActionBarActivity {
     boolean isUpdate = false;
-    private int _idFT = 0;
+    private int _idFT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,15 +31,20 @@ public class DetailFTActivity extends ActionBarActivity {
             FTDetailFragment fragment = new FTDetailFragment();
             Bundle bundle = getIntent().getBundleExtra("packetFromDashboard");
 
+            Intent intent = getIntent();
+            _idFT = intent.getIntExtra("FT_Id",0);
+
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.detailFTContainer, fragment).commit();
+            Toast.makeText(this, "DetailFTActivity, ID = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
             /*
             _idFT = 0;
             Intent intent = getIntent();
-            _idFT = intent.getIntExtra("foodtestId",0);
+            _idFT = intent.getIntExtra("FT_Id",0);
             DatabaseConnector databaseConnector = new DatabaseConnector(this);
             FoodTest foodTest = new FoodTest();
             foodTest = databaseConnector.getFTbyId(_idFT);
+            Toast.makeText(this, "DetailFTActivity, ID = " + String.valueOf(foodTest.getIdFT()) + ", _idFT = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
             */
         }
     }
@@ -62,12 +67,15 @@ public class DetailFTActivity extends ActionBarActivity {
         switch (id){
             case R.id.action_settings:
                 break;
-            case R.id.home:
+            case android.R.id.home:
                 finish();
                 break;
             case R.id.action_save:
                 saveFT();
                 finish();
+                break;
+            case R.id.action_edit:
+                isUpdate = true;
                 break;
             case R.id.action_delete:
                 deleteFT();
@@ -77,6 +85,10 @@ public class DetailFTActivity extends ActionBarActivity {
     }
 
     private void saveFT() {
+        Intent intent = getIntent();
+        _idFT = intent.getIntExtra("FT_Id",0);
+        Toast.makeText(this, "DetailFTActivity(SaveFT), ID = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
+
         FoodTest foodTest = new FoodTest();
 
         EditText editTextName = (EditText) findViewById(R.id.editTextName);
@@ -93,6 +105,15 @@ public class DetailFTActivity extends ActionBarActivity {
         long statusInsert = -1;
         statusInsert = databaseConnector.insertFT(foodTest);
 
+        /*
+        if(isUpdate = true){
+            statusInsert = databaseConnector.updateFT(foodTest);
+            Log.d("DetailFTActivity", foodTest.toString());
+        }else{
+            statusInsert = databaseConnector.insertFT(foodTest);
+        }
+        */
+
         if(statusInsert != -1){
             Log.d("DetailFTActivity", "Save FoodTest success: " + foodTest.toString());
             Toast.makeText(this, "Save FoodTest Success: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
@@ -108,7 +129,8 @@ public class DetailFTActivity extends ActionBarActivity {
         Intent intent = getIntent();
         _idFT = intent.getIntExtra("FT_Id",0);
 
-        Log.d("DetailFTActivity","on delete is running");
+        Log.d("DetailFTActivity","on delete is running, ID = " +  String.valueOf(_idFT));
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(DetailFTActivity.this);
 
         builder.setTitle("Are you sure?");
