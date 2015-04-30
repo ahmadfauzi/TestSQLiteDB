@@ -43,23 +43,20 @@ public class FTArrayAdapter extends ArrayAdapter<FoodTest> {
         Log.d("FTArrayAdapter", "ID = " + String.valueOf(foodTest.getIdFT()));
 
         TextView nameLabel = (TextView) view.findViewById(R.id.list_item_name);
-        if(foodTest.getNameFT().isEmpty()){
-            nameLabel.setText("Food Name : -");
-        }else{
+        if(!foodTest.getNameFT().isEmpty()){
+            //nameLabel.setText("Food Name : -");
             nameLabel.setText("Food Name : " + foodTest.getNameFT());
         }
 
         TextView reagentLabel = (TextView) view.findViewById(R.id.list_item_reagent);
-        if(foodTest.getReagentFT().isEmpty()){
-            reagentLabel.setText("Reagent : -");
-        }else{
+        if(!foodTest.getReagentFT().isEmpty()){
+            //reagentLabel.setText("Reagent : -");
             reagentLabel.setText("Reagent : " + foodTest.getReagentFT());
         }
 
         TextView resultLabel = (TextView) view.findViewById(R.id.list_item_result);
-        if(foodTest.getResultFT().isEmpty()){
-            resultLabel.setText("Result : - ");
-        }else {
+        if(!foodTest.getResultFT().isEmpty()){
+            //resultLabel.setText("Result : - ");
             resultLabel.setText("Result : " + foodTest.getResultFT());
         }
         return view;

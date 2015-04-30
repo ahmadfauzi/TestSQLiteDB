@@ -30,10 +30,11 @@ public class FTDetailFragment extends Fragment{
         super.onCreate(savedInstanceState);
 
         Bundle bundle = getArguments();
-        if(bundle != null && bundle.containsKey(MySQLiteHelper.TABLE_NAME_FT)){
+        //bundle.containsKey(MySQLiteHelper.TABLE_NAME_FT);
+        if(bundle != null ){
             foodTest = new FoodTest(bundle);
         }
-        Log.d("FTDetailFragment", "ID = " + String.valueOf(bundle));
+        //Log.d("FTDetailFragment", "ID = " + String.valueOf(bundle.containsKey(MySQLiteHelper.TABLE_NAME_FT)));
     }
 
     @Override

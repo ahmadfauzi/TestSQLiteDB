@@ -72,7 +72,6 @@ public class DasboardFTActivity extends ActionBarActivity implements FTListFragm
         Bundle bundle = null;
         Intent intent = new Intent(this, DetailFTActivity.class);
         intent.putExtra("packetFromDashboard", bundle);
-        //intent.putExtra("foodtest_Id",0);
         startActivity(intent);
     }
 
@@ -85,7 +84,7 @@ public class DasboardFTActivity extends ActionBarActivity implements FTListFragm
         detailIntent.putExtra("FT_Id", foodTest.getIdFT());
         startActivity(detailIntent);
 
-        Toast.makeText(this, "DashboardFTActivity, ID = " + String.valueOf(foodTest.getIdFT()), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "DashboardFTActivity, ID = " + String.valueOf(foodTest.getIdFT()), Toast.LENGTH_SHORT).show();
         Log.d("DashboardMainActivity", String.valueOf(foodTest.getIdFT()));
     }
 }

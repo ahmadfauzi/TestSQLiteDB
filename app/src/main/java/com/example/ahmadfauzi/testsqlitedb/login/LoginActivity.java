@@ -48,21 +48,21 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void enterLogin(View view) {
-        String nameAccount;
-        String password;
+        String nameAccount="";
+        String password="";
 
         nameAccount = mEditUserameLogin.getText().toString();
         password = mEditPasswordLogin.getText().toString();
-        if(nameAccount != null || password != null) {
+        if(nameAccount.equals("") || password.equals("")) {
+            Toast.makeText(this, "Username or Password must be filled",Toast.LENGTH_SHORT).show();
+        }else {
             if (nameAccount.equals(password)) {
                 Intent intent = new Intent(this, DasboardFTActivity.class);
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(this, "Login gagal", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show();
             }
-        }else {
-            Toast.makeText(this, "Username or Password must be filled",Toast.LENGTH_SHORT).show();
         }
     }
 }

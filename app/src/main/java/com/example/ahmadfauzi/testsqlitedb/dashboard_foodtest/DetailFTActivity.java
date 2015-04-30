@@ -36,16 +36,7 @@ public class DetailFTActivity extends ActionBarActivity {
 
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(R.id.detailFTContainer, fragment).commit();
-            Toast.makeText(this, "DetailFTActivity, ID = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
-            /*
-            _idFT = 0;
-            Intent intent = getIntent();
-            _idFT = intent.getIntExtra("FT_Id",0);
-            DatabaseConnector databaseConnector = new DatabaseConnector(this);
-            FoodTest foodTest = new FoodTest();
-            foodTest = databaseConnector.getFTbyId(_idFT);
-            Toast.makeText(this, "DetailFTActivity, ID = " + String.valueOf(foodTest.getIdFT()) + ", _idFT = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
-            */
+            //Toast.makeText(this, "DetailFTActivity, ID = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -72,7 +63,6 @@ public class DetailFTActivity extends ActionBarActivity {
                 break;
             case R.id.action_save:
                 saveFT();
-                finish();
                 break;
             case R.id.action_edit:
                 isUpdate = true;
@@ -87,40 +77,43 @@ public class DetailFTActivity extends ActionBarActivity {
     private void saveFT() {
         Intent intent = getIntent();
         _idFT = intent.getIntExtra("FT_Id",0);
-        Toast.makeText(this, "DetailFTActivity(SaveFT), ID = " + String.valueOf(_idFT), Toast.LENGTH_SHORT).show();
 
         FoodTest foodTest = new FoodTest();
 
         EditText editTextName = (EditText) findViewById(R.id.editTextName);
-        foodTest.setNameFT(editTextName.getText().toString());
-
         EditText editTextReagent = (EditText) findViewById(R.id.editTextReagent);
-        foodTest.setReagentFT(editTextReagent.getText().toString());
-
         EditText editTextResult = (EditText) findViewById(R.id.editTextResult);
-        foodTest.setResultFT(editTextResult.getText().toString());
 
-        DatabaseConnector databaseConnector = new DatabaseConnector(this);
+        if(!editTextName.getText().toString().equals("") || !editTextReagent.getText().toString().equals("") || !editTextResult.getText().toString().equals("")){
+            foodTest.setNameFT(editTextName.getText().toString());
+            foodTest.setReagentFT(editTextReagent.getText().toString());
+            foodTest.setResultFT(editTextResult.getText().toString());
+            foodTest.setIdFT(_idFT);
 
-        long statusInsert = -1;
-        statusInsert = databaseConnector.insertFT(foodTest);
+            DatabaseConnector databaseConnector = new DatabaseConnector(this);
 
-        /*
-        if(isUpdate = true){
-            statusInsert = databaseConnector.updateFT(foodTest);
-            Log.d("DetailFTActivity", foodTest.toString());
-        }else{
-            statusInsert = databaseConnector.insertFT(foodTest);
-        }
-        */
+            long statusInsert = -1;
+            //Toast.makeText(this, "DetailFTActivity(SaveFT), ID = " + String.valueOf(_idFT) + ", /" + foodTest.toString(), Toast.LENGTH_SHORT).show();
 
-        if(statusInsert != -1){
-            Log.d("DetailFTActivity", "Save FoodTest success: " + foodTest.toString());
-            Toast.makeText(this, "Save FoodTest Success: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+            if(_idFT != 0){
+                statusInsert = databaseConnector.updateFT(foodTest);
+                Log.d("DetailFTActivity", "Update : " + foodTest.toString());
+                //Toast.makeText(this, "DetailFTActivity, Update : " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+            }else{
+                statusInsert = databaseConnector.insertFT(foodTest);
+            }
+
+            if(statusInsert != -1){
+                Log.d("DetailFTActivity", "Save FoodTest success: " + foodTest.toString());
+                Toast.makeText(this, "Save FoodTest Success: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+                finish();
+            }else{
+                Log.d("DetailFTActivity", "Save FoodTest failed: " + foodTest.toString());
+                Toast.makeText(this, "Save FoodTest failed: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+            }
             finish();
         }else{
-            Log.d("DetailFTActivity", "Save FoodTest failed: " + foodTest.toString());
-            Toast.makeText(this, "Save FoodTest failed: " + foodTest.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "This field must be filled", Toast.LENGTH_SHORT).show();
         }
     }
 

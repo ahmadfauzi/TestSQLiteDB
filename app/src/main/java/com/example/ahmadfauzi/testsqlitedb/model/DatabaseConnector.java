@@ -69,7 +69,7 @@ public class DatabaseConnector {
 
         SQLiteDatabase db = mySQLiteHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        //values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
+        values.put(MySQLiteHelper.COLUMN_ID_TABLE_FT, foodTest.getIdFT());
         values.put(MySQLiteHelper.COLUMN_NAME_TABLE_FT, foodTest.getNameFT());
         values.put(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, foodTest.getReagentFT());
         values.put(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, foodTest.getResultFT());
