@@ -13,19 +13,22 @@ public class FoodTest implements Serializable {
     public String nameFT;
     public String reagentFT;
     public String resultFT;
+    public String photoFT;
 
     public FoodTest(){
         //this.idFT = 0;
         this.nameFT = "";
         this.reagentFT = "";
         this.resultFT = "";
+        this.photoFT = "";
     }
 
-    public FoodTest(int id, String name, String reagent, String result){
+    public FoodTest(int id, String name, String reagent, String result, String photo){
         this.idFT = id;
         this.nameFT = name;
         this.reagentFT = reagent;
         this.resultFT = result;
+        this.photoFT = photo;
     }
 
     public FoodTest(Bundle b){
@@ -34,6 +37,7 @@ public class FoodTest implements Serializable {
             this.nameFT = b.getString(MySQLiteHelper.COLUMN_NAME_TABLE_FT);
             this.reagentFT = b.getString(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT);
             this.resultFT = b.getString(MySQLiteHelper.COLUMN_RESULT_TABLE_FT);
+            this.photoFT = b.getString(MySQLiteHelper.COLUMN_PHOTO_TABLE_FT);
         }
     }
 
@@ -69,6 +73,14 @@ public class FoodTest implements Serializable {
         this.resultFT = resultFT;
     }
 
+    public String getPhotoFT() {
+        return photoFT;
+    }
+
+    public void setPhotoFT(String photoFT) {
+        this.photoFT = photoFT;
+    }
+
     //================================================================================================
 
     @Override
@@ -89,6 +101,7 @@ public class FoodTest implements Serializable {
         b.putString(MySQLiteHelper.COLUMN_NAME_TABLE_FT, this.nameFT);
         b.putString(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, this.reagentFT);
         b.putString(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, this.resultFT);
+        b.putString(MySQLiteHelper.COLUMN_PHOTO_TABLE_FT, this.photoFT);
         return b;
     }
 
@@ -99,6 +112,7 @@ public class FoodTest implements Serializable {
                 "nameFT='" + nameFT + '\'' +
                 "reagentFT='" + reagentFT + '\'' +
                 "resultFT='" + resultFT + '\'' +
+                "photoFT='" + photoFT + '\'' +
                 '}';
     }
 }

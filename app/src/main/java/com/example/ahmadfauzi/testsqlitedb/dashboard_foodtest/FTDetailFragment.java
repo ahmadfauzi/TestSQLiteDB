@@ -1,5 +1,8 @@
 package com.example.ahmadfauzi.testsqlitedb.dashboard_foodtest;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,7 +26,7 @@ public class FTDetailFragment extends Fragment{
     FoodTest foodTest;
     EditText editTextName, editTextReagent, editTextResult;
     ImageView ivFoodTest;
-    Button buttonChooseImage;
+    Button buttonTakePhoto;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -41,15 +44,22 @@ public class FTDetailFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.detail_ft_fragment, container, false);
 
-        ivFoodTest = (ImageView) view.findViewById(R.id.ivFoodTest);
         editTextName = (EditText) view.findViewById(R.id.editTextName);
         editTextReagent = (EditText) view.findViewById(R.id.editTextReagent);
         editTextResult = (EditText) view.findViewById(R.id.editTextResult);
+        ivFoodTest = (ImageView) view.findViewById(R.id.ivFoodTest);
 
         if(foodTest != null){
             editTextName.setText(foodTest.getNameFT());
             editTextReagent.setText(foodTest.getReagentFT());
             editTextResult.setText(foodTest.getResultFT());
+
+            if(foodTest.getPhotoFT() == null){
+                ivFoodTest.setImageResource(R.drawable.ft_photo);
+            }else {
+                Bitmap photoFT = BitmapFactory.decodeFile(foodTest.getPhotoFT());
+                ivFoodTest.setImageBitmap(photoFT);
+            }
         }
         return view;
     }

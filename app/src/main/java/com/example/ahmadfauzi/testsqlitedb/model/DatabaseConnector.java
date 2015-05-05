@@ -27,6 +27,7 @@ public class DatabaseConnector {
         values.put(MySQLiteHelper.COLUMN_NAME_TABLE_FT, foodTest.getNameFT());
         values.put(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, foodTest.getReagentFT());
         values.put(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, foodTest.getResultFT());
+        values.put(MySQLiteHelper.COLUMN_PHOTO_TABLE_FT, foodTest.getPhotoFT());
 
         foodtest_insert = db.insert(MySQLiteHelper.TABLE_NAME_FT, null, values);
         db.close();
@@ -48,6 +49,7 @@ public class DatabaseConnector {
                 foodTest.setNameFT(cursor.getString(cursor.getColumnIndex((MySQLiteHelper.COLUMN_NAME_TABLE_FT))));
                 foodTest.setReagentFT(cursor.getString(cursor.getColumnIndex((MySQLiteHelper.COLUMN_REAGENT_TABLE_FT))));
                 foodTest.setResultFT(cursor.getString(cursor.getColumnIndex((MySQLiteHelper.COLUMN_RESULT_TABLE_FT))));
+                foodTest.setPhotoFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_PHOTO_TABLE_FT)));
                 foodTestsList.add(foodTest);
                 counter++;
 
@@ -73,6 +75,7 @@ public class DatabaseConnector {
         values.put(MySQLiteHelper.COLUMN_NAME_TABLE_FT, foodTest.getNameFT());
         values.put(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT, foodTest.getReagentFT());
         values.put(MySQLiteHelper.COLUMN_RESULT_TABLE_FT, foodTest.getResultFT());
+        values.put(MySQLiteHelper.COLUMN_PHOTO_TABLE_FT, foodTest.getPhotoFT());
 
         statusUpdate = db.update(MySQLiteHelper.TABLE_NAME_FT, values, MySQLiteHelper.COLUMN_ID_TABLE_FT + "= '" + foodTest.getIdFT() + "'", null);
 
@@ -108,6 +111,7 @@ public class DatabaseConnector {
                 foodTest.setNameFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_NAME_TABLE_FT)));
                 foodTest.setReagentFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_REAGENT_TABLE_FT)));
                 foodTest.setResultFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_RESULT_TABLE_FT)));
+                foodTest.setPhotoFT(cursor.getString(cursor.getColumnIndex(MySQLiteHelper.COLUMN_PHOTO_TABLE_FT)));
             }while (cursor.moveToFirst());
             cursor.close();
             db.close();
