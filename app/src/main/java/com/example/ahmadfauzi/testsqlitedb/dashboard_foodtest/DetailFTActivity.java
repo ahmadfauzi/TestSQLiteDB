@@ -7,7 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
+//import android.media.Image;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Environment;

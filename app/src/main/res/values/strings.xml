@@ -15,5 +15,6 @@
     <string name="resultTextView">Result</string>
     <string name="menuTitleSave">Save</string>
     <string name="menuTitleDelete">Delete</string>
+    <string name="title_activity_splash_screen">SplashScreen</string>
 
 </resources>
